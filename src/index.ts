@@ -1,4 +1,5 @@
 import './index.css'
+import test from './test'
 
 class Greeter {
   greeting: string;
@@ -15,11 +16,13 @@ let greeter = new Greeter("world");
 console.log(greeter.greet())
 
 
-function test(str: string = '123'){
+function test1(str: string = '123'){
     return str
 }
 
-console.log(test('test'))
+console.log(test1('test123'))
+
+console.log(test())
 
 
 console.log(12321231312);
