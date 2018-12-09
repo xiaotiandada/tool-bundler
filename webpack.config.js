@@ -15,11 +15,11 @@ module.exports = {
     })
   ],
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
+        use: [{
+            loader: 'style-loader'
+          },
           {
             loader: 'css-loader',
             options: {
@@ -28,10 +28,23 @@ module.exports = {
           }
         ]
       },
-      { test: /\.ts$/, use: 'ts-loader' }
+      {
+        test: /\.less$/,
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "less-loader" // compiles Less to CSS
+        }]
+      },
+      {
+        test: /\.ts$/,
+        use: 'ts-loader'
+      }
     ]
   },
   resolve: {
-    extensions: ['.ts','.js']
+    extensions: ['.ts', '.js']
   }
 }

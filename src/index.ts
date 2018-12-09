@@ -1,4 +1,5 @@
 import './index.css'
+import './index.less'
 import test from './test'
 
 class Greeter {
