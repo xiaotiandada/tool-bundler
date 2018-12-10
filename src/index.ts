@@ -2,6 +2,7 @@ import './index.css'
 import './index.less'
 import test from './test'
 
+
 class Greeter {
   greeting: string;
   constructor(message: string) {
@@ -27,3 +28,8 @@ console.log(test())
 
 
 console.log(12321231312);
+
+
+$('div').css('background','red')
+
+console.log($);
