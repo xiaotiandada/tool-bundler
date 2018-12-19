@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -13,6 +14,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
+    new ExtractTextPlugin("styles.css"),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
@@ -20,27 +22,31 @@ module.exports = {
   ],
   module: {
     rules: [{
-        test: /\.css$/,
-        use: [{
-            loader: 'style-loader'
-          },
-          {
+        test: /(\.css|\.less)$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [{
             loader: 'css-loader',
             options: {
-              modules: true
+              importLoaders: 1
             }
-          }
-        ]
-      },
-      {
-        test: /\.less$/,
-        use: [{
-          loader: "style-loader" // creates style nodes from JS strings
-        }, {
-          loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "less-loader" // compiles Less to CSS
-        }]
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('postcss-import'),
+                require('autoprefixer')({
+                  browsers: [
+                    "> 1%",
+                    "last 2 versions"
+                  ]
+                })
+              ]
+            }
+          }, {
+            loader: "less-loader"
+          }]
+        })
       },
       {
         test: /\.ts$/,
