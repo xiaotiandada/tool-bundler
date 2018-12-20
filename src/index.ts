@@ -26,6 +26,4 @@ console.log(test());
 
 console.log(12321231312);
 
-$("div").css("background", "red");
-
 console.log($);
