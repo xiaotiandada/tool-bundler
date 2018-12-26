@@ -26,4 +26,4 @@ console.log(test());
 
 console.log(12321231312);
 
-console.log($);
+// console.log($);
